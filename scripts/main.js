@@ -11,17 +11,16 @@ var estadsisticasTable = document.getElementById("estadisticas");
 var curasosTable = document.getElementById("cursos");
 var btnFiltro = document.getElementById("boton-filtro");
 var textoBusqueda = document.getElementById("texto-busqueda");
-btnFiltro.onclick = filtrarPorNombre;
-mostrarDatosAprendiz(ap);
-mostrarEstadisticas(ap);
-mostrarCursosAprendiz(ap.cursos);
-function filtrarPorNombre() {
+btnFiltro.onclick = function () {
     var text = textoBusqueda.value;
     text = (text == null) ? "" : text;
     curasosTable.getElementsByTagName("tbody")[0].remove();
     var cursosFiltrados = ap.cursos.filter(function (c) { return c.nombre.match(text); });
     mostrarCursosAprendiz(cursosFiltrados);
-}
+};
+mostrarDatosAprendiz(ap);
+mostrarEstadisticas(ap);
+mostrarCursosAprendiz(ap.cursos);
 function mostrarDatosAprendiz(aprendiz) {
     var tbodyAprendiz = document.createElement("tbody");
     tbodyAprendiz.innerHTML = "<tr><td colspan=2><img src=\"./".concat(aprendiz.avatar, "\" height=\"100\"></td></tr>\n    <tr><td>Nombres:</td><td>").concat(aprendiz.nombres, "</td></tr>\n    <tr><td>Apellidos:</td><td>").concat(aprendiz.apellidos, "</td></tr>\n    <tr><td>Nivel Educativo:</td><td>").concat(aprendiz.nivelEducativo, "</td></tr>\n    <tr><td>Edad:</td><td>").concat(aprendiz.edad, "</td></tr>");
